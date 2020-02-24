@@ -256,8 +256,15 @@ export interface IDrawImageData extends IIMage {
  */
 export function drawImage(data: IDrawImageData, drawOptions: IDrawOptions) {
   const { ctx, toPx } = drawOptions;
-  const { imgPath, x, y, w, h, sx, sy, sw, sh, borderRadius = 0, borderWidth = 0, borderColor } = data;
+  const { imgPath, x, y, w, h, sx, sy, sw, sh, borderRadius = 0, borderWidth = 0, borderColor, rotateRadians = 0, rotateOriginX = toPx(x + w / 2), rotateOriginY = toPx(y + h / 2) } = data;
   ctx.save();
+  if (0 !== rotateRadians) {
+    let offsetX = rotateOriginX;
+    let offsetY = rotateOriginY;
+    ctx.translate(toPx(offsetX), toPx(offsetY));
+    ctx.rotate(rotateRadians);
+    ctx.translate(toPx(offsetX * -1), toPx(offsetY * -1));
+  }
   if (borderRadius > 0) {
     let drawData = {
       x, y, w, h,

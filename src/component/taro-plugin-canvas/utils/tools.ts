@@ -193,6 +193,10 @@ export function downloadImageAndInfo(image, index, toRpxFunc, pixelRatio) {
           y,
           w: setWidth,
           h: setHeight,
+          // keep roration configs
+          rotateRadians: image.rotateRadians,
+          rotateOriginX: image.rotateOriginX,
+          rotateOriginY: image.rotateOriginY,
         }
         resolve(result);
       })

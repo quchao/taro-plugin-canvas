@@ -139,6 +139,9 @@ import TaroCanvasDrawer from '../../component/taro-plugin-canvas';
 | borderRadius | Number(单位:rpx) | 否   | 圆角，跟css一样                           |
 | borderWidth  | Number(单位:rpx) | 否   | 边框宽度                                  |
 | borderColor  | String           | 否   | 边框颜色                                  |
+| rotateRadians  | Number(单位:Radian) | 否   | 旋转弧度（1 弧度 = 180 / π 度）                                  |
+| rotateOriginX  | Number(单位:rpx) | 否   | 旋转的中心点 X 坐标                                  |
+| rotateOriginY  | Number(单位:rpx) | 否   | 旋转的中心点 Y 坐标                                  |
 | zIndex       | Int              | 否   | 层级，越大越高                            |
 
 ### lines字段
