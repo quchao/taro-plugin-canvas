@@ -142,6 +142,7 @@ import TaroCanvasDrawer from '../../component/taro-plugin-canvas';
 | rotateRadians  | Number(单位:Radian) | 否   | 旋转弧度（1 弧度 = 180 / π 度）                                  |
 | rotateOriginX  | Number(单位:rpx) | 否   | 旋转的中心点 X 坐标                                  |
 | rotateOriginY  | Number(单位:rpx) | 否   | 旋转的中心点 Y 坐标                                  |
+| alpha  | Number | 否   | 设置 Alpha 透明度，取值为 0 ~ 1 之间。                                  |
 | zIndex       | Int              | 否   | 层级，越大越高                            |
 
 ### lines字段

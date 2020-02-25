@@ -256,8 +256,12 @@ export interface IDrawImageData extends IIMage {
  */
 export function drawImage(data: IDrawImageData, drawOptions: IDrawOptions) {
   const { ctx, toPx } = drawOptions;
-  const { imgPath, x, y, w, h, sx, sy, sw, sh, borderRadius = 0, borderWidth = 0, borderColor, rotateRadians = 0, rotateOriginX = toPx(x + w / 2), rotateOriginY = toPx(y + h / 2) } = data;
+  const { imgPath, x, y, w, h, sx, sy, sw, sh, borderRadius = 0, borderWidth = 0, borderColor, rotateRadians = 0, rotateOriginX = toPx(x + w / 2), rotateOriginY = toPx(y + h / 2), alpha } = data;
   ctx.save();
+  const prevAlpha = ctx.globalAlpha;
+  if (alpha) {
+      ctx.globalAlpha = alpha;
+  }
   if (0 !== rotateRadians) {
     let offsetX = rotateOriginX;
     let offsetY = rotateOriginY;
@@ -282,6 +286,9 @@ export function drawImage(data: IDrawImageData, drawOptions: IDrawOptions) {
     }
   } else {
     ctx.drawImage(imgPath, toPx(sx), toPx(sy), toPx(sw), toPx(sh), toPx(x), toPx(y), toPx(w), toPx(h));
+  }
+  if (alpha) {
+      ctx.globalAlpha = prevAlpha;
   }
   ctx.restore();
 }
