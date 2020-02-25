@@ -109,6 +109,22 @@ export function downImage(imageUrl: string) {
           reject(err);
         },
       });
+    } else if (
+        /^cloud:\/\//.test(imageUrl)
+    ) {
+        Taro.cloud.downloadFile({
+            fileID: (imageUrl),
+            success: (res) => {
+                if (res.statusCode === 200) {
+                    resolve(res.tempFilePath);
+                } else {
+                    reject(res.errMsg);
+                }
+            },
+            fail(err) {
+                reject(err);
+            },
+        });
     } else {
       // 支持本地地址
       resolve(imageUrl);
