@@ -214,6 +214,8 @@ export function downloadImageAndInfo(image, index, toRpxFunc, pixelRatio) {
           rotateOriginX: image.rotateOriginX,
           rotateOriginY: image.rotateOriginY,
           alpha: image.alpha,
+          flipHorizontal: image.flipHorizontal,
+          flipVertical: image.flipVertical,
         }
         resolve(result);
       })
