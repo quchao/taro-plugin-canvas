@@ -209,7 +209,7 @@ export function downloadImageAndInfo(image, index, toRpxFunc, pixelRatio) {
           y,
           w: setWidth,
           h: setHeight,
-          // keep roration configs
+          scale: image.scale,
           rotateRadians: image.rotateRadians,
           rotateOriginX: image.rotateOriginX,
           rotateOriginY: image.rotateOriginY,

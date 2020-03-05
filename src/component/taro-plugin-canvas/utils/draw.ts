@@ -256,18 +256,21 @@ export interface IDrawImageData extends IIMage {
  */
 export function drawImage(data: IDrawImageData, drawOptions: IDrawOptions) {
   const { ctx, toPx } = drawOptions;
-  const { imgPath, x, y, w, h, sx, sy, sw, sh, borderRadius = 0, borderWidth = 0, borderColor, rotateRadians = 0, rotateOriginX = toPx(x + w / 2), rotateOriginY = toPx(y + h / 2), alpha, flipHorizontal = false, flipVertical = false } = data;
+  const { imgPath, x, y, w, h, sx, sy, sw, sh, borderRadius = 0, borderWidth = 0, borderColor, scale = 1, rotateRadians = 0, rotateOriginX = x + w / 2, rotateOriginY = y + h / 2, alpha, flipHorizontal = false, flipVertical = false } = data;
   ctx.save();
   const prevAlpha = ctx.globalAlpha;
   if (alpha) {
       ctx.globalAlpha = alpha;
   }
+    if (1 !== scale) {
+        ctx.translate(toPx(rotateOriginX), toPx(rotateOriginY));
+        ctx.scale(scale, scale);
+        ctx.translate(toPx(rotateOriginX * -1), toPx(rotateOriginY * -1));
+    }
   if (0 !== rotateRadians) {
-    const offsetX = rotateOriginX;
-    const offsetY = rotateOriginY;
-    ctx.translate(toPx(offsetX), toPx(offsetY));
+    ctx.translate(toPx(rotateOriginX), toPx(rotateOriginY));
     ctx.rotate(rotateRadians);
-    ctx.translate(toPx(offsetX * -1), toPx(offsetY * -1));
+    ctx.translate(toPx(rotateOriginX * -1), toPx(rotateOriginY * -1));
   }
     // scale(-1, -1) won't work in wechat mini-app
     ctx.transform(
@@ -276,7 +279,7 @@ export function drawImage(data: IDrawImageData, drawOptions: IDrawOptions) {
         0,
         flipVertical ? -1 : 1,
         toPx(flipHorizontal ? 2 * x + w : 0),
-        toPx(flipVertical ? 2 * y + h : 0)
+        toPx(flipVertical ? 2 * y + h : 0),
     );
     if (borderRadius > 0) {
     let drawData = {
