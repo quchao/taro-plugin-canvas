@@ -4,6 +4,7 @@ export interface IConfig {
   height: number;
   backgroundColor?: string;
   debug?: boolean;
+  'overflow-y'?: 'hidden' | 'visible';
   pixelRatio?: number;
   preload?: boolean;
   'hide-loading'?: boolean;

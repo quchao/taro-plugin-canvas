@@ -78,6 +78,8 @@ import TaroCanvasDrawer from '../../component/taro-plugin-canvas';
 | width           | Number(单位:rpx)         | 是   | 画布宽度                                   |
 | height          | Number(单位:rpx)         | 是   | 画布高度                                   |
 | backgroundColor | String                   | 否   | 画布颜色                                   |
+| overflow-y      | String                   | 否   | 高度溢出处理策略： 'visible'(显示) | 'hidden'(隐藏) 
+|
 | debug           | Boolean                  | 否   | false隐藏canvas，true显示canvas，默认false |
 | preload         | Boolean                  | 否   | true：图片资源预下载 默认false             |
 | hide-loading    | Boolean                  | 否   | true：隐藏loading 默认false                |

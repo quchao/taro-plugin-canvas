@@ -20,6 +20,9 @@ export const randomString = (length: number) => {
  * @returns { number }
  */
 export const getHeight = (config: IConfig) => {
+  if ('overflow-y' in config && 'hidden' === config['overflow-y']) {
+    return config.height;
+  }
   const getTextHeight = (text) => {
     let fontHeight = text.lineHeight || text.fontSize;
     let height = 0;
